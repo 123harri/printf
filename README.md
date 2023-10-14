@@ -1,1 +1,1 @@
-This is a readme for printf group project for Harriet
+Hello, and welcome to the printf project. This project will created by Dennis Makaka and Harriet Muwe. We'll built a special tool to help you print things in your C code more easily. You will be able to print words and numbers with style, making your text look fancy and neat in your C programs.
