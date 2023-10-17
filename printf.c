@@ -37,6 +37,9 @@ case 'd':
 case 'i':
 count += printf_integer(args);
 break;
+case 'b':
+count += print_binary(args);
+break;
 }
 }
 format++;
@@ -52,8 +55,11 @@ return (count);
 */
 int printf_character(va_list args)
 {
-char *s = va_arg(args, char *);
-_putchar(*s);
+char c = va_arg(args, int);
+
+ if (c == '\0')
+return (0);
+_putchar(c);
 return (1);
 }
 
@@ -106,6 +112,12 @@ if (num < 0)
 _putchar('-');
 count++;
 num = -num;
+}
+else if
+(num == 0)
+{
+_putchar('0');
+return (1);
 }
 count += print_number(num);
 return (count);
