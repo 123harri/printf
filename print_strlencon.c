@@ -18,7 +18,7 @@ return (length);
  * @s: Pointer to the input string
  * Return: The length of the string (number of characters)
  */
-int _strlen(char *s)
+int _strlen(const char *s)
 {
 int length;
 for (length = 0; s[length] != 0; length++)
