@@ -6,12 +6,9 @@
  */
 int _strlen(char *s)
 {
-int length = 0;
-while (*s != '\0')
-{
-s++;
-length++;
-}
+int length;
+for (length = 0; s[length] != 0; length++)
+	;
 return (length);
 }
 
@@ -22,11 +19,9 @@ return (length);
  */
 int _strlencon(const char *s)
 {
-int length = 0;
-while (*s != '\0')
-{
-s++;
-length++;
-}
+int length;
+
+for (length = 0; s[length] != 0; length++)
+	;
 return (length);
 }

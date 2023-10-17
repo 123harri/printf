@@ -24,7 +24,7 @@ if (format == NULL || (format[0] == '%' && format[count] == '\0'))
 	return (-1);
 Here:
 
-while (format[count] == '\0')
+while (format[count] != '\0')
 {
 	j = 1;
 	while (j >= 0)

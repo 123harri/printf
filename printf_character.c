@@ -2,7 +2,7 @@
 /**
  * printf_character - function that prints a character
  * @args: argument
- * Return: 0 always
+ * Return: 1
  */
 int printf_character(va_list args)
 {
@@ -11,5 +11,5 @@ int printf_character(va_list args)
 
 	s = va_arg(args, int);
 	_putchar(s);
-	return (0);
+	return (1);
 }
