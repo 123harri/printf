@@ -1,0 +1,76 @@
+#include "main.h"
+
+/**
+ * _printf - Custom printf function to handle %c, %s, and %%
+ * @format: The format string
+ * @...: Variable number of arguments
+ * Return: The number of characters printed
+ */
+int _printf(const char *format, ...) {
+va_list args;
+va_start(args, format);
+int count = 0; /*Keeps track of the number of characters printed out*/
+
+while (*format) {
+if (*format != '%'){
+_putchar(*format);
+count ++;
+}
+else {
+format++ /*move past the %*/
+switch (*format) {
+case 'c':
+count += print_character(args);
+break;
+case 's':
+count += print_str(args);
+break;
+case '%':
+count += print_37();
+break;
+}
+}
+format++; /*move to the next character in the format string*/
+}
+
+va_end(args);
+return count;
+
+/**
+*printf_character - function that prints a character
+*@args: argument
+*Return: 0
+*/
+int printf_character(va_list args) {
+char s
+s = va_arg(args, int);
+_putchar(s);
+return (1); /*A single character is printed here*/
+}
+
+/**
+*printf_str - function thet prints a string
+*@args: arguments
+*Return: length of the printed string
+*/
+int printf_str(va_list args){
+char *s
+s = va_args(args, char*);
+if (s== NULL){
+s = "(null)";
+}
+len = _strlen(s);
+for (j = 0; j<len; j++){
+_putchar(s[j]);
+}
+return (len);
+}
+
+/**
+*print_37 - prints the percentage sign
+*Return: If 0,success
+*/
+int print_37(void){
+_putchar(37);
+return (1); /*because a single '%' is printed*/
+}
