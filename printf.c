@@ -6,18 +6,16 @@
  */
 int _printf(const char *format, ...)
 {
+
 	match m[] = {
 		{"%c", printf_character}, {"%s", printf_str}, {"%%", print_37},
 		{"%d", print_decimal}, {"%i", print_int}, {"%b", print_binary},
 		{"%u", print_unsigned},
-		{"%o", print_octal},
-		{"%x", print_hexadecimal},
-		{"%X", print_HEXAdecimal},
-		{"%p", print_pointer},
-		{"%R", print_rot13},
-		{"%r", print_reverse_str},
+		{"%o", print_octal}, {"%x", print_hexadecimal}, {"%X", print_HEXAdecimal},
+		{"%p", print_pointer}, {"%R", print_rot13}, {"%r", print_reverse_str},
 		{"%S", print_custom_string},
 	};
+
 	va_list args;
 	int count = 0, j, l = 0;
 
@@ -26,7 +24,7 @@ if (format == NULL || (format[0] == '%' && format[count] == '\0'))
 	return (-1);
 Here:
 
-while (format[count] != '\0')
+while (format[count] == '\0')
 {
 	j = 1;
 	while (j >= 0)
