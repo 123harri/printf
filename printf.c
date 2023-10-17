@@ -1,46 +1,112 @@
 #include "main.h"
+
 /**
- * _printf - custom printf function
- * @format: string format
- * Return: numbers of characters printed, excluding null bytes
+ * _printf - Custom printf function to handle %c, %s, and %%
+ * @format: The format string
+ * @...: Variable number of arguments
+ * Return: The number of characters printed
  */
 int _printf(const char *format, ...)
 {
+int count = 0;
+va_list args;
+va_start(args, format);
 
-	match m[] = {
-		{"%c", printf_character}, {"%s", printf_str}, {"%%", print_37},
-		{"%d", print_decimal}, {"%i", print_int}, {"%b", print_binary},
-		{"%u", print_unsigned},
-		{"%o", print_octal}, {"%x", print_hexadecimal}, {"%X", print_HEXAdecimal},
-		{"%p", print_pointer}, {"%R", print_rot13}, {"%r", print_reverse_str},
-		{"%S", print_custom_string},
-	};
-
-	va_list args;
-	int count = 0, j, l = 0;
-
-	va_start(args, format);
-if (format == NULL || (format[0] == '%' && format[count] == '\0'))
-	return (-1);
-Here:
-
-while (format[count] != '\0')
+while (*format)
 {
-	j = 1;
-	while (j >= 0)
-	{
-		if (m[j].id[0] == format[count] && m[j].id[1] == format[count + 1])
-		{
-			l = l + m[j].f(args);
-			count = count + 2;
-			goto Here;
-		}
-		j++;
-	}
-	_putchar(format[count]);
-	count++;
-	l++;
+if (*format != '%')
+{
+_putchar(*format);
+count++;
 }
+else
+{
+format++;
+switch (*format)
+{
+case 'c':
+count += printf_character(args);
+break;
+case 's':
+count += printf_str(args);
+break;
+case '%':
+count += print_37();
+break;
+case 'd':
+case 'i':
+count += printf_integer(args);
+break;
+}
+}
+format++;
+}
+
 va_end(args);
-return (l);
+return (count);
+}
+/**
+*printf_character - function that prints a character
+*@args: argument
+*Return: 0
+*/
+int printf_character(va_list args)
+{
+char *s = va_arg(args, char *);
+_putchar(*s);
+return (1);
+}
+
+/**
+*printf_str - function thet prints a string
+*@args: arguments
+*Return: length of the printed string
+*/
+int printf_str(va_list args)
+{
+char *s;
+int j, len;
+s = va_arg(args, char*);
+
+if (s == NULL)
+{
+s = "(null)";
+}
+len = _strlen(s);
+
+for (j = 0; j < len; j++)
+{
+_putchar(s[j]);
+}
+return (len);
+}
+
+/**
+*print_37 - prints the percentage sign
+*Return: If 0,success
+*/
+int print_37(void)
+{
+_putchar(37);
+return (1);
+}
+
+/**
+ * printf_integer - function that prints an integer
+ * @args: arguments
+ * Return: number of digits printed
+ */
+int printf_integer(va_list args)
+{
+int num = va_arg(args, int);
+int count = 0;
+
+if (num < 0)
+{
+_putchar('-');
+count++;
+num = -num;
+}
+count += print_number(num);
+return (count);
 }
